@@ -1,0 +1,3 @@
+{
+  "app": "mvn exec:java -Dexec.cleanupDaemonThreads=false -Dexec.mainClass=com.awsblog.queueing.cdk.CDK_App"
+}

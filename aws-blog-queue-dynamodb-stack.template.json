@@ -1,0 +1,88 @@
+{
+  "Resources": {
+    "queuesampleShipmentC76F63E8": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "queued",
+            "AttributeType": "N"
+          },
+          {
+            "AttributeName": "last_updated_timestamp",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "DLQ",
+            "AttributeType": "N"
+          }
+        ],
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "queueud-last_updated_timestamp-index",
+            "KeySchema": [
+              {
+                "AttributeName": "queued",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "last_updated_timestamp",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 100,
+              "WriteCapacityUnits": 100
+            }
+          },
+          {
+            "IndexName": "dlq-last_updated_timestamp-index",
+            "KeySchema": [
+              {
+                "AttributeName": "DLQ",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "last_updated_timestamp",
+                "KeyType": "RANGE"
+              }
+            ],
+            "Projection": {
+              "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+              "ReadCapacityUnits": 100,
+              "WriteCapacityUnits": 100
+            }
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 100,
+          "WriteCapacityUnits": 100
+        },
+        "SSESpecification": {
+          "SSEEnabled": true
+        },
+        "TableName": "AWSBlog-shipment-demo"
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "aws-blog-queue-dynamodb-stack/queue-sample-Shipment/Resource"
+      }
+    }
+  }
+}

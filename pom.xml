@@ -1,0 +1,148 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.awsblog.queueing</groupId>
+  <artifactId>awsblog-queueing</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.8</jdk.version>    
+    <aws-java-lambda-core.version>1.2.0</aws-java-lambda-core.version>
+    <aws-java-lamba-events.version>2.2.6</aws-java-lamba-events.version>
+    <jsii-runtime.version>0.18.0</jsii-runtime.version>
+    <cdk.version>1.11.0.DEVPREVIEW</cdk.version>
+    <aws-java-sdk.version>1.11.646</aws-java-sdk.version>
+    <aws-java-lambda-log4j.version>1.1.0</aws-java-lambda-log4j.version>
+    <jackson.version>2.10.0</jackson.version>
+    <junit.version>4.12</junit.version>
+    <log4j.version>2.11.2</log4j.version>
+    <apache-commons-logging.version>1.2</apache-commons-logging.version>
+  </properties>  
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+          <forceJavacCompilerUse>true</forceJavacCompilerUse>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+  
+    <dependency>
+      <groupId>software.amazon.jsii</groupId>
+      <artifactId>jsii-runtime</artifactId>
+      <version>${jsii-runtime.version}</version>
+    </dependency>
+  
+    <!-- AWS CDK -->
+    <dependency>
+      <groupId>software.amazon.awscdk</groupId>
+      <artifactId>core</artifactId>
+      <version>${cdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awscdk</groupId>
+      <artifactId>lambda</artifactId>
+      <version>${cdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awscdk</groupId>
+      <artifactId>dynamodb</artifactId>
+      <version>${cdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awscdk</groupId>
+      <artifactId>s3</artifactId>
+      <version>${cdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awscdk</groupId>
+      <artifactId>sns</artifactId>
+      <version>${cdk.version}</version>
+    </dependency>  
+  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- lambda dependencies -->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-core</artifactId>
+      <version>${aws-java-lambda-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-lambda-java-events</artifactId>
+      <version>${aws-java-lamba-events.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-sts</artifactId>
+      <version>${aws-java-sdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-lambda</artifactId>
+      <version>${aws-java-sdk.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-dynamodb</artifactId>
+      <version>${aws-java-sdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-sns</artifactId>
+      <version>${aws-java-sdk.version}</version>
+    </dependency>
+    
+       <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-core</artifactId>
+		<version>${log4j.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-api</artifactId>
+		<version>${log4j.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>${apache-commons-logging.version}</version>
+	</dependency>    
+    
+  </dependencies>
+</project>
