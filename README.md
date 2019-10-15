@@ -8,7 +8,7 @@ This sample code is made available under the MIT-0 license. See the LICENSE file
 
 ## Build your infrastructure 
 
-There are several ways to build necessary infrastructure to showcase queueing concepts. 
+There are several ways to build necessary infrastructure to showcase queuing concepts. 
 
 a) Using Cloud Formation script to build the dynamoDB table 
 
@@ -23,7 +23,7 @@ Above script will generate required DynamoDB table.
 b) Run CDK (we have used 1.11.DevPreview release of the Java CDK)
 
 In order to run the sample code, we have created a CDK code to build your infrastructure in AWS. Running CDK 
-CLI you will create an IAM Role, sample Lambda and DynamoDB example table.
+CLI you will create a DynamoDB example table.
 
 To install the CLI CDK, please follow CDK installation instructions, found at:
 
@@ -58,9 +58,9 @@ Current DynamoDB table name is: `AWSBlog-shipment-demo`. If you want to change i
 
 ## SDK
 
-Our project contains a SDK that supports all key queueing commands addressed in the Blog Post.
+Our project contains a SDK that supports all key queuing commands addressed in the Blog Post.
 
-All of those commands are showcased within `com.awsblog.queueing.test` package.
+All of those commands are show cased within `com.awsblog.queueing.test` package.
 
 Simple example:
 
@@ -125,7 +125,7 @@ In order to use CLI from the terminal, go to the folder: `./<root-folder>/target
 In order to start your CLI session you'll have two different options to invoke your session. 
 
 - Option 1: Invoke the CLI with `--profile` and `--region` command line parameters 
-- Option 2: Start CLI without initally connected to AWS; at later time, user can use CLI 'aws' command to connect to AWS.
+- Option 2: Start CLI without initially connected to AWS; at later time, user can use CLI 'aws' command to connect to AWS.
 
 To start your interactive CLI, run the following command:
 
@@ -169,7 +169,7 @@ Once CLI is running, enter `h` or `?` to obtain the help:
       > ready                                       [Make the record ready for the shipment]
       > enqueue | en                                [Enqueue current ID]
       > peek                                        [Peek the Shipment from the Queue .. it will replace the current ID with the peeked one]
-      > done                                        [Simulate successfull record processing completion ... remove from the queue]
+      > done                                        [Simulate successful record processing completion ... remove from the queue]
       > fail                                        [Simulate failed record's processing ... put back to the queue; needs to be peeked again]
       > invalid                                     [Remove record from the regular queue to dead letter queue (DLQ) for manual fix]
     > id                                            [Reverting back to the standard CLI's system operational mode]
@@ -328,9 +328,9 @@ ID <A-101> >> Enter command: en
 ```
 
 In above example, we can see that the record with ID: A-101 is placed in the queue. Now the status is changed to `READY_TO_SHIP`. 
-In order to be going to processign stage, it will need to be retrieved from the queue, using SDK's `peek()` method.
+In order to be going to processing stage, it will need to be retrieved from the queue, using SDK's `peek()` method.
 
-We can obtain the queue stat at any time using the `qstat` command:
+We can obtain the queue statistics at any time using the `qstat` command:
 
 ```
 ID <A-101> >> Enter command: qstat
@@ -375,7 +375,7 @@ If we want to retrieve the record from the queue, we can use `peek` command:
 
 ```
 ID <A-202> >> Enter command: peek
-     Peek was successfull ... record peeked is: [A-101]
+     Peek was successful ... record peeked is: [A-101]
 {
   "id" : "A-101",
   "creation_timestamp" : "2019-10-07T19:43:45.676Z",
@@ -400,7 +400,7 @@ Above, we can see that A-101 is peeked from the queue. The status of the record 
 it removes Shipment record from the queue, failed - puts it back in the queue or marks it as invalid - it sends the record to another queue, 
 called Dead Letter Queue (DLQ) for further processing.
 
-At this stage, we'll simulate successfull processing of the record, using `done' command.
+At this stage, we'll simulate successful processing of the record, using `done' command.
 
 ```
 ID <A-101> >> Enter command: done
@@ -500,7 +500,7 @@ ID <A-303> >> Enter command: en
 }
 
 D <A-303> >> Enter command: peek
-     Peek was successfull ... record peeked is: [A-303]
+     Peek was successful ... record peeked is: [A-303]
 {
   "id" : "A-303",
   "creation_timestamp" : "2019-10-08T15:03:18.332Z",
@@ -570,7 +570,7 @@ Let's peek again and let's mark it as an invalid record - goes to Dead Letter Qu
 
 ```
 ID <A-303> >> Enter command: peek
-     Peek was successfull ... record peeked is: [A-303]
+     Peek was successful ... record peeked is: [A-303]
 {
   "id" : "A-303",
   "creation_timestamp" : "2019-10-08T15:03:18.332Z",
