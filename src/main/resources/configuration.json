@@ -1,0 +1,60 @@
+{
+    "version" : "1.00",
+    "last_updated_date": "2019-08-06",
+    "s3_code_bucket": "aws-blog-post-queueing",
+    "tables": [
+        {
+            "logical_name": "Shipment",
+            "table_name": "AWSBlog-shipment-demo",
+            "read_capacity": 100,
+            "write_capacity": 100,
+            "partition_key": {
+            	"attribute_name" : "id",
+			    "attribute_type" : "String"
+            },
+			"indexes" : [ 
+			    {
+			      "index_name" : "queueud-last_updated_timestamp-index",
+			      "hash_key": {
+			      	"attribute_name" : "queued",
+			      	"attribute_type" : "Numeric"
+			      },
+			      "sort_key": {
+			      	"attribute_name" : "last_updated_timestamp",
+			      	"attribute_type" : "String"
+			      },
+		          "read_capacity": 100,
+            	  "write_capacity": 100,
+			      "GSI" : true
+			 	},
+				{
+			      "index_name" : "dlq-last_updated_timestamp-index",
+			      "hash_key": {
+			      	"attribute_name" : "DLQ",
+			      	"attribute_type" : "Numeric"
+			      },
+			      "sort_key": {
+			      	"attribute_name" : "last_updated_timestamp",
+			      	"attribute_type" : "String"
+			      },
+		          "read_capacity": 100,
+            	  "write_capacity": 100,
+			      "GSI" : true
+			 	}			
+			]
+        }        
+    ],
+    "lambdas": [
+        {
+        	"logical_name": "QueueProcessingLambda",
+            "lambda_class": "com.amazonaws.queueing.sample.QueueProcessingLambda",
+            "lambda_name": "QueueProcessingLambda-demo",
+            "runtime": "Java8",
+            "handler": "handleRequest",
+            "local_jar": "./target/sample-1.0.0.jar",
+            "description": "Getting messages from Queue",
+            "memory_megabytes": 3000,
+            "timeout_seconds": 900
+        }
+    ]
+}
