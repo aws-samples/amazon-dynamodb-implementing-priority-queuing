@@ -8,12 +8,12 @@ This sample code is made available under the MIT-0 license. See the LICENSE file
 
 ## Quick start
 
-1) Generate DynamoDB table using the CloudFromation script discussed below
+1) Generate DynamoDB table using the CloudFromation script, as [shown below](#cdk)
 
 Example:
 aws cloudformation create-stack --stack-name q-ddb-stack --template-body file://aws-blog-queue-dynamodb-stack.template.json
 
-2) Start projects CLI using Java JAR command
+2) Start our own [CLI using Java JAR command] (#cli)
 
 Example:
 java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=default --region=us-east-1
@@ -24,6 +24,7 @@ java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=defau
 
 There are several ways to build necessary infrastructure to showcase queuing concepts. 
 
+<a name="cdk"></a>
 a) Using Cloud Formation script to build the dynamoDB table 
 
 There is a `aws-blog-queue-dynamodb-stack.template.json` at the root of the project. Run the following AWS CLI command:
@@ -132,7 +133,8 @@ Simple example:
 CLI is a Java based utility that provides a Command Line Interface to number of methods 
 related to this AWS Blog Post project. The tool is a great educational system to better understand how queue implementation works on DynamoDB.
 
-### Getting Started
+<a name="cli"></a>
+### Getting Started with CLI
 
 In order to use CLI from the terminal, go to the folder: `./<root-folder>/target/`
 
