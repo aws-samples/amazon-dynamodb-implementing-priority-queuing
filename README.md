@@ -18,7 +18,7 @@ aws cloudformation create-stack --stack-name q-ddb-stack --template-body file://
 Example:
 java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=default --region=us-east-1
  
-3) Run Shipment & Queue simulation: follow the [test script]{#how-to-test?} 
+3) Run Shipment & Queue simulation: follow the [test script](#how-to-test?) 
 
 ## Build your infrastructure 
 
@@ -236,7 +236,8 @@ Example:
 ID <A-101> >> Enter command: 
 ```
 
-## How to test? {#how-to-test?}
+<a name="how-to-test?"></a>
+## How to test?
 
 To start, crate test records.
 
