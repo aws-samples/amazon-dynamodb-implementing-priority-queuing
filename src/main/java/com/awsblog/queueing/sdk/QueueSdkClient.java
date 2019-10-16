@@ -619,8 +619,13 @@ public class QueueSdkClient {
         	// IMPORTANT
         	// please note, we are not updating top-level attribute `last_updated_timestamp` in order to avoid re-indexing the order
         	
-            UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id", shipment.getId())
-                .withUpdateExpression("ADD #sys.#v :one SET #sys.queue_selected = :true, #sys.last_updated_timestamp = :lut, #sys.queue_peek_timestamp = :lut, #sys.peek_utc_timestamp = :ts, #sys.#st = :st")
+            UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+            	.withPrimaryKey("id", shipment.getId())
+                .withUpdateExpression("ADD #sys.#v :one "
+                		+ "SET #sys.queue_selected = :true, "
+                		+ "#sys.last_updated_timestamp = :lut, "
+                		+ "#sys.queue_peek_timestamp = :lut, "
+                		+ "#sys.peek_utc_timestamp = :ts, #sys.#st = :st")
                 .withNameMap(new NameMap()
                 		.with("#v", "version")
                 		.with("#st", "status")
@@ -721,18 +726,25 @@ public class QueueSdkClient {
 		
         try {
 
-            UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id", id)
-                .withUpdateExpression("ADD #sys.#v :one REMOVE #sys.peek_utc_timestamp, queued, #DLQ SET #sys.queued = :zero, #sys.queue_selected = :false, #sys.last_updated_timestamp = :lut, last_updated_timestamp = :lut, #sys.queue_remove_timestamp = :lut")
-                .withNameMap(new NameMap().with("#v", "version").with("#DLQ", "DLQ").with("#sys", "system_info"))
+            UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+            	.withPrimaryKey("id", id)
+                .withUpdateExpression("ADD #sys.#v :one "
+                		+ "REMOVE #sys.peek_utc_timestamp, queued, #DLQ "
+                		+ "SET #sys.queued = :zero, #sys.queue_selected = :false, "
+                		+ "#sys.last_updated_timestamp = :lut, "
+                		+ "last_updated_timestamp = :lut, "
+                		+ "#sys.queue_remove_timestamp = :lut")
+                .withNameMap(new NameMap().with("#v", "version")
+                		.with("#DLQ", "DLQ")
+                		.with("#sys", "system_info"))
                 .withValueMap(
                         new ValueMap()
                         	.withInt(":one", 1)
                         	.withInt(":zero", 0)
                         	.withBoolean(":false", false)
-                        	//.withBoolean(":true", true)
                         	.withInt(":v", shipment.getSystemInfo().getVersion())
                         	.withString(":lut", odt.toString()))
-                .withConditionExpression("#sys.#v = :v") // and #sys.queue_selected = :true")  it doesn't need to be selected
+                .withConditionExpression("#sys.#v = :v") 
                 .withReturnValues(ReturnValue.ALL_NEW);
 
             outcome = table.updateItem(updateItemSpec);
@@ -780,8 +792,16 @@ public class QueueSdkClient {
 		
         try {
 
-            UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id", id)
-                .withUpdateExpression("ADD #sys.#v :one REMOVE #DLQ SET #sys.queued = :one, queued = :one, #sys.queue_selected = :false, last_updated_timestamp = :lut, #sys.last_updated_timestamp = :lut, #sys.queue_add_timestamp = :lut, #sys.#st = :st")
+            UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+            	.withPrimaryKey("id", id)
+                .withUpdateExpression("ADD #sys.#v :one "
+                		+ "REMOVE #DLQ "
+                		+ "SET #sys.queued = :one, queued = :one, "
+                		+ "#sys.queue_selected = :false, "
+                		+ "last_updated_timestamp = :lut, "
+                		+ "#sys.last_updated_timestamp = :lut, "
+                		+ "#sys.queue_add_timestamp = :lut, "
+                		+ "#sys.#st = :st")
                 .withNameMap(new NameMap()
                 		.with("#v", "version")
                 		.with("#DLQ", "DLQ")
@@ -841,8 +861,15 @@ public class QueueSdkClient {
 		
         try {
 
-            UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id", id)
-                .withUpdateExpression("ADD #sys.#v :one REMOVE queued SET #DLQ = :one, #sys.queued = :zero, #sys.queue_selected = :false, last_updated_timestamp = :lut, #sys.last_updated_timestamp = :lut, #sys.dlq_add_timestamp = :lut, #sys.#st = :st")
+            UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+            	.withPrimaryKey("id", id)
+                .withUpdateExpression("ADD #sys.#v :one "
+                		+ "REMOVE queued "
+                		+ "SET #DLQ = :one, #sys.queued = :zero, "
+                		+ "#sys.queue_selected = :false, "
+                		+ "last_updated_timestamp = :lut, "
+                		+ "#sys.last_updated_timestamp = :lut, "
+                		+ "#sys.dlq_add_timestamp = :lut, #sys.#st = :st")
                 .withNameMap(new NameMap()
                 		.with("#v", "version")
                 		.with("#DLQ", "DLQ")
@@ -903,9 +930,14 @@ public class QueueSdkClient {
 		
         try {
 
-            UpdateItemSpec updateItemSpec = new UpdateItemSpec().withPrimaryKey("id", id)
-                .withUpdateExpression("ADD #sys.#v :one SET last_updated_timestamp = :lut, #sys.last_updated_timestamp = :lut")
-                .withNameMap(new NameMap().with("#v", "version").with("#sys", "system_info"))
+            UpdateItemSpec updateItemSpec = new UpdateItemSpec()
+            	.withPrimaryKey("id", id)
+                .withUpdateExpression("ADD #sys.#v :one "
+                		+ "SET last_updated_timestamp = :lut, "
+                		+ "#sys.last_updated_timestamp = :lut")
+                .withNameMap(new NameMap()
+                		.with("#v", "version")
+                		.with("#sys", "system_info"))
                 .withValueMap(
                         new ValueMap().withInt(":one", 1)
                         	.withInt(":v", shipment.getSystemInfo().getVersion())

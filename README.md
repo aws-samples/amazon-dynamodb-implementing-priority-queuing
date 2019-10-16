@@ -6,6 +6,20 @@ Implementing Priority Queuing with Amazon DynamoDB
 
 This sample code is made available under the MIT-0 license. See the LICENSE file.
 
+## Quick start
+
+1) Generate DynamoDB table using the CloudFromation script discussed below
+
+Example:
+aws cloudformation create-stack --stack-name q-ddb-stack --template-body file://aws-blog-queue-dynamodb-stack.template.json
+
+2) Start projects CLI using Java JAR command
+
+Example:
+java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=default --region=us-east-1
+ 
+3) Run Shipment & Queue simulation: follow the [test script]{#how-to-test?} 
+
 ## Build your infrastructure 
 
 There are several ways to build necessary infrastructure to showcase queuing concepts. 
@@ -25,7 +39,7 @@ b) Run CDK (we have used 1.11.DevPreview release of the Java CDK)
 In order to run the sample code, we have created a CDK code to build your infrastructure in AWS. Running CDK 
 CLI you will create a DynamoDB example table.
 
-To install the CLI CDK, please follow CDK installation instructions, found at:
+To install the Command Line Interface (CLI) CDK, please follow CDK installation instructions, found at:
 
 https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html
 
@@ -222,7 +236,7 @@ Example:
 ID <A-101> >> Enter command: 
 ```
 
-## How to test?
+## How to test? {#how-to-test?}
 
 To start, crate test records.
 
