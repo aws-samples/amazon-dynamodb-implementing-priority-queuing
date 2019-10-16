@@ -13,12 +13,18 @@ This sample code is made available under the MIT-0 license. See the LICENSE file
 Example:
 aws cloudformation create-stack --stack-name q-ddb-stack --template-body file://aws-blog-queue-dynamodb-stack.template.json
 
-2) Start our own CLI using [Java JAR command](#cli)
+2) Build your Java code
+
+In the root of the project, type on the terminal: mvn clean install
+
+Above command should build a JAR in the /target folder.
+
+3) Start our own CLI using [Java JAR command](#cli)
 
 Example:
 java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=default --region=us-east-1
  
-3) Run Shipment & Queue simulation: follow the [test script](#how-to-test?) 
+4) Run Shipment & Queue simulation: follow the [test script](#how-to-test?) 
 
 ## Build your infrastructure 
 
