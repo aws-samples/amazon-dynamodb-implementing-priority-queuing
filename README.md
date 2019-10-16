@@ -57,7 +57,7 @@ project directory.
 Run the following commands:
 
 ```
-    mnv clean compile
+    mvn clean compile
     
             cdk --profile <your-aws-credentials-profile-name> 
                     --context instance-name=<Choose your instance name>]
