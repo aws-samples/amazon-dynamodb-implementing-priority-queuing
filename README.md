@@ -13,7 +13,7 @@ This sample code is made available under the MIT-0 license. See the LICENSE file
 Example:
 aws cloudformation create-stack --stack-name q-ddb-stack --template-body file://aws-blog-queue-dynamodb-stack.template.json
 
-2) Start our own [CLI using Java JAR command] (#cli)
+2) Start our own CLI using [Java JAR command](#cli)
 
 Example:
 java -cp awsblog-queueing-1.0.0.jar com.awsblog.queueing.cli.CLI --profile=default --region=us-east-1
