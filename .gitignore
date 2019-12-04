@@ -1,1 +1,37 @@
-/target/
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# Eclipse
+target/
+bin/
+.project
+.settings
+.classpath
+.factorypath
+.apt_*
+
+# VSCode
+.vscode
+
+# IntelliJ
+*.iml
+/.idea
+
+# build resources
+build
+dist
+
+# files
+.DS_Store
+*.lock
+*gz
+*local.md
+*.local
+*.public
+*old
+
+# git
+!.gitkeep
+
+# misc project specifics
+tmp
+deploy-lambda.sh
