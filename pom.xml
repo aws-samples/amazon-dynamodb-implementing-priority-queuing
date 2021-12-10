@@ -18,7 +18,7 @@
     <aws-java-lambda-log4j.version>1.1.0</aws-java-lambda-log4j.version>
     <jackson.version>2.10.0</jackson.version>
     <junit.version>4.13.1</junit.version>
-    <log4j.version>2.13.3</log4j.version>
+    <log4j.version>2.15.0</log4j.version>
     <apache-commons-logging.version>1.2</apache-commons-logging.version>
   </properties>  
 
