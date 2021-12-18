@@ -15,7 +15,7 @@
     <jsii-runtime.version>0.18.0</jsii-runtime.version>
     <cdk.version>1.11.0.DEVPREVIEW</cdk.version>
     <aws-java-sdk.version>1.11.646</aws-java-sdk.version>
-    <aws-java-lambda-log4j.version>1.1.0</aws-java-lambda-log4j.version>
+    <aws-java-lambda-log4j.version>1.4.0</aws-java-lambda-log4j.version>
     <jackson.version>2.10.0</jackson.version>
     <junit.version>4.13.1</junit.version>
     <log4j.version>2.17.0</log4j.version>
